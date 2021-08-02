@@ -9,7 +9,7 @@ form {
 .city-input,
 .country-input {
     height: 40px;
-    width: 400px;
+    width: 30vw;
     margin-right: 15px;
     padding: 5px;
     border: 1px solid lightgrey;
@@ -33,18 +33,15 @@ form {
     cursor: pointer;
 }
 
-@media only screen and (max-width: 525px) {
-    .city-input {
-        width: 200px
-    }
-}
+@media only screen and (max-width: 400px) {
 
-@media only screen and (max-width: 326px) {
+    .country-input,
+    .city-input {
+        margin-top: 15px;
+        width: 100%;
+    }
+
     .search-btn {
         margin-top: 15px;
-    }
-
-    .city-input {
-        margin-right: 0;
     }
 }
