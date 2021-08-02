@@ -3,11 +3,17 @@ import React from 'react';
 import Header from "./components/header/header"
 import Search from "./components/search/search"
 
-const App = () =>{
+function App(){
+    // Make request to restcountries
+    const fetchCountries = async () =>{
+        const countries = await (await fetch("https://restcountries.eu/rest/v2/all")).json();
+        return countries
+    }
+
     return (
-        <div>            
+        <div>         
             <Header />
-            <Search />
+            <Search fetchCountries={fetchCountries} />
         </div>
     )
 }

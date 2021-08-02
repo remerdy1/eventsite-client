@@ -6,7 +6,8 @@ form {
     flex-wrap: wrap;
 }
 
-.city-input {
+.city-input,
+.country-input {
     height: 40px;
     width: 400px;
     margin-right: 15px;
@@ -17,7 +18,7 @@ form {
 }
 
 .search-btn {
-    background-color: #0275d8;
+    background-color: #1B98F5;
     border: none;
     border-radius: 8px;
     color: white;
@@ -28,7 +29,7 @@ form {
 }
 
 .search-btn:hover {
-    background-color: #005197;
+    background-color: #1878c2;
     cursor: pointer;
 }
 

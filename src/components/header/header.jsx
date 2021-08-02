@@ -1,10 +1,10 @@
 import React from 'react';
 import "./style.css"
 
-const Header = () =>{
+function Header(){
     return (
         <header>
-            <h1>Eventsite</h1>
+            <h1><a href="/">Eventsite</a></h1>
             <p><a href="/profile">My Profile</a></p>
         </header>
     )
