@@ -1,11 +1,11 @@
 import React from 'react';
-import "./style.css"
+import "./header.css"
 
 function Header(){
     return (
         <header>
-            <h1><a href="/">Eventsite</a></h1>
-            <p><a href="/profile">My Profile</a></p>
+            <h1 className="header"><a href="/">Eventsite</a></h1>
+            <p className="profile-text"><a href="/profile">My Profile</a></p>
         </header>
     )
 }

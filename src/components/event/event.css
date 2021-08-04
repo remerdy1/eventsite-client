@@ -1,0 +1,18 @@
+.event-card {
+    text-align: center;
+    display: inline-block;
+    border: 1px solid black;
+    height: 500px;
+    width: 500px;
+    margin-bottom: 15px;
+}
+
+.event-image {
+    width: 100%;
+    height: 56.25%;
+}
+
+.buy-button {
+    position: relative;
+    top: 100px;
+}

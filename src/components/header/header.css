@@ -9,7 +9,7 @@ header {
     letter-spacing: 0.5px;
 }
 
-h1 {
+.header {
     font-size: 3rem;
     margin-left: 25px;
     display: inline;
@@ -20,7 +20,7 @@ a {
     text-decoration: none;
 }
 
-p {
+.profile-text {
     margin-right: 25px;
 }
 
@@ -30,13 +30,13 @@ p {
         flex-wrap: wrap;
     }
 
-    h1 {
+    .header {
         margin-left: 0;
         width: 100vw;
         text-align: center;
     }
 
-    p {
+    .profile-text {
         margin-right: 0;
         width: 100vw;
         text-align: center;
@@ -44,7 +44,7 @@ p {
 }
 
 @media only screen and (max-width: 230px) {
-    h1 {
+    .header {
         font-size: 1.5rem;
     }
 }

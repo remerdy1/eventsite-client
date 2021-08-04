@@ -17,7 +17,8 @@ form {
     outline: none;
 }
 
-.search-btn {
+.search-button,
+.buy-button {
     background-color: #1B98F5;
     border: none;
     border-radius: 8px;
@@ -28,7 +29,8 @@ form {
     font-size: 1rem;
 }
 
-.search-btn:hover {
+.search-button:hover,
+.buy-button:hover {
     background-color: #1878c2;
     cursor: pointer;
 }
