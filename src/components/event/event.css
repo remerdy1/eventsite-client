@@ -2,17 +2,27 @@
     text-align: center;
     display: inline-block;
     border: 1px solid black;
+    border-radius: 8px;
     height: 500px;
-    width: 500px;
+    width: 350px;
     margin-bottom: 15px;
+    position: relative;
+}
+
+.event-card:hover {
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 3px 3px 5px 6px grey;
 }
 
 .event-image {
     width: 100%;
     height: 56.25%;
+
 }
 
 .buy-button {
-    position: relative;
-    top: 100px;
+    position: absolute;
+    bottom: 35px;
+    left: 126px;
 }

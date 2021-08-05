@@ -31,7 +31,7 @@ function App(){
             setEvents(response.data);
         }catch(e){
             //TODO Handle errors
-
+            setEvents(["No results found"])
         }
     }
 
