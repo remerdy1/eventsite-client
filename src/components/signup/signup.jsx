@@ -10,23 +10,22 @@ function Signup(){
         const password = e.target.password.value;
         const confirmPassword = e.target.confirmPassword.value;
         
-        if(password === confirmPassword){
-            try{
-                e.target.username.value = null;
-                e.target.fullName.value = null;
-                e.target.password.value = null;
-                e.target.confirmPassword.value = null;
-                await axios.post("http://localhost:8050/signup", {fullName, username, password, confirmPassword});
-            }catch(e){
-                console.log(e);
-            }
-        } 
-        else 
-        {
-            alert("Passwords do not match")
+        try{
+            // Clear form
+            e.target.username.value = null;
+            e.target.fullName.value = null;
             e.target.password.value = null;
             e.target.confirmPassword.value = null;
+            
+            // Send data
+            const res = await axios.post("http://localhost:8050/signup", {fullName, username, password, confirmPassword});
+            
+            // redirect
+            if(res.status === 200) window.location.href = "/login";
+        }catch(e){
+            alert(e.response.data);
         }
+        
     }
 
     return (
