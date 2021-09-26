@@ -5,6 +5,7 @@ import Header from "./components/header/header";
 import Search from "./components/search/search";
 import Events from "./components/events/events";
 import Login from "./components/login/login";
+import Signup from "./components/signup/signup";
 
 const axios = require("axios");
 
@@ -49,6 +50,12 @@ function App(){
                     </Route>
                     <Route path="/login">
                         <Login />
+                    </Route>
+                    <Route path="/signup">
+                        <Signup />
+                    </Route>
+                    <Route>
+                        <h1 style={{textAlign: "center"}}>Page not found</h1>
                     </Route>
                 </Switch>
             </Router>   
