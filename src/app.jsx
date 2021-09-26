@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-
-import Header from "./components/header/header"
-import Search from "./components/search/search"
-import Events from "./components/events/events"
+import {BrowserRouter as Router, Switch,Route, Link} from "react-router-dom";
+// Components
+import Header from "./components/header/header";
+import Search from "./components/search/search";
+import Events from "./components/events/events";
+import Login from "./components/login/login";
 
 const axios = require("axios");
 
@@ -11,7 +13,9 @@ function App(){
 
     // Make request to restcountries
     const fetchCountries = async () =>{
-        const countries = await (await fetch("https://restcountries.eu/rest/v2/all")).json();
+        // https://restcountries.com/#api-endpoints-v3-all
+        // Limited to European countries 
+        const countries = await (await fetch("https://restcountries.com/v2/continent/europe")).json();
         return countries
     }
 
@@ -30,16 +34,24 @@ function App(){
                 
             setEvents(response.data);
         }catch(e){
-            //TODO Handle errors
             setEvents(["No results found"])
         }
     }
 
     return (
-        <div>         
-            <Header />
-            <Search fetchCountries={fetchCountries} handleSubmit={handleSubmit}/>
-            <Events eventList={events}/>
+        <div>     
+            <Router>             
+                <Header />
+                <Switch>
+                    <Route path="/" exact>
+                        <Search fetchCountries={fetchCountries} handleSubmit={handleSubmit}/>
+                        <Events eventList={events}/>
+                    </Route>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
+                </Switch>
+            </Router>   
         </div>
     )
 }

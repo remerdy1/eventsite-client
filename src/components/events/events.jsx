@@ -3,7 +3,6 @@ import Event from "../event/event"
 import "./events.css"
 
 function Events(props){
-
     if(props.eventList[0] !== "No results found"){
         return (  
             <div className="events">
@@ -12,7 +11,7 @@ function Events(props){
                         name={event.name} 
                         image={event.images.find(image => image.ratio === "16_9").url} 
                         date={event.dates.start.localDate} 
-                        time={event.dates.start.localTime.substring(0, 5)} 
+                        time={event.dates.start.localTime ? event.dates.start.localTime.substring(0, 5) : "TBA"} 
                         key={props.eventList.indexOf(event)}
                         url={event.url}
                     />)}

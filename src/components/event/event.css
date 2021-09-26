@@ -18,7 +18,8 @@
 .event-image {
     width: 100%;
     height: 56.25%;
-
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
 }
 
 .buy-button {
