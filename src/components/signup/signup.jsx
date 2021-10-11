@@ -21,6 +21,7 @@ function Signup(){
             const res = await axios.post("http://localhost:8050/signup", {fullName, username, password, confirmPassword});
             
             // redirect
+            //todo redirect to profile page
             if(res.status === 200) window.location.href = "/login";
         }catch(e){
             alert(e.response.data);

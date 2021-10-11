@@ -12,7 +12,11 @@ function Login(){
         e.target.username.value = null;
         e.target.password.value = null;
 
-        await axios.post("http://localhost:8050/login", {username, password,});
+        try{
+            await axios.post("http://localhost:8050/login", {username, password,});
+        }catch(e){
+            alert("Unable to find user with those credentials.");
+        }
     }
 
     return (

@@ -14,7 +14,6 @@ function App(){
 
     // Make request to restcountries
     const fetchCountries = async () =>{
-        // https://restcountries.com/#api-endpoints-v3-all
         // Limited to European countries 
         const countries = await (await fetch("https://restcountries.com/v2/continent/europe")).json();
         return countries
