@@ -2,7 +2,6 @@ import React from 'react';
 import "./event.css";
 
 // TODO: Loading...
-// TODO: Error, unable to find events in your location
 // TODO: CANCELLED instead of Buy Tickets
 function Event(props){
     return (
