@@ -1,7 +1,7 @@
 import React from 'react';
 import "./header.css"
 
-function Header(){
+function Header(props){
     return (
         <header>
             <h1 className="header"><a href="/">Eventsite</a></h1>

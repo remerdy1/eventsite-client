@@ -3,7 +3,7 @@ import "./login.css";
 
 const axios = require("axios");
 
-function Login(){
+function Login(props){
     const onSubmit = async e =>{
         e.preventDefault();
         const username = e.target.username.value;
@@ -13,7 +13,11 @@ function Login(){
         e.target.password.value = null;
 
         try{
-            await axios.post("http://localhost:8050/login", {username, password,});
+            const res = await axios.post("http://localhost:8050/login", {username, password,});
+            // Store JWT 
+            localStorage.setItem("token", res.data.token);
+            window.location = "/"
+            
         }catch(e){
             alert("Unable to find user with those credentials.");
         }

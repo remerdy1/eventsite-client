@@ -14,11 +14,13 @@ const axios = require("axios");
 
 function App(){
     const [events, setEvents] = useState([]);
+    //TODO variable to store if user is signed in
+    const [userData, setUserData] = useState({});
 
     // Make request to restcountries
     const fetchCountries = async () =>{
         // Limited to European countries 
-        const countries = await (await fetch("https://restcountries.com/v2/continent/europe")).json();
+        const countries = await (await fetch("https://restcountries.com/v3.1/subregion/europe")).json();
         return countries
     }
 
@@ -57,7 +59,7 @@ function App(){
                         <Signup />
                     </Route>
                     <Route path="/:username/profile">
-                        <MyProfile />
+                        <MyProfile setUserData={setUserData} userData={userData}/>
                     </Route>
                     <Route>
                         <h1 style={{textAlign: "center"}}>Page not found</h1>
