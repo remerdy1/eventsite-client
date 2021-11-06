@@ -24,6 +24,12 @@ a {
     margin-right: 25px;
 }
 
+.profile-text>a:hover,
+.profile-text:hover {
+    color: black;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 350px) {
     header {
         height: 200px;

@@ -15,8 +15,8 @@ function Login(props){
         try{
             const res = await axios.post("http://localhost:8050/login", {username, password,});
             // Store JWT 
-            localStorage.setItem("token", res.data.token);
-            window.location = "/"
+            localStorage.setItem("user", JSON.stringify(res.data));
+            window.location = "/";
             
         }catch(e){
             alert("Unable to find user with those credentials.");

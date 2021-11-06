@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Switch,Route, Link} from "react-router-dom";
 import "./style.css"
 
@@ -14,8 +14,16 @@ const axios = require("axios");
 
 function App(){
     const [events, setEvents] = useState([]);
-    //TODO variable to store if user is signed in
-    const [userData, setUserData] = useState({});
+    const [username, setUsername] = useState("");
+
+    // Check if user is already signed in
+    useEffect(() =>{
+        const loggedInUser = localStorage.getItem("user");
+        
+        if(loggedInUser){
+            setUsername(JSON.parse(loggedInUser).username);
+        }
+    }, []);
 
     // Make request to restcountries
     const fetchCountries = async () =>{
@@ -46,7 +54,7 @@ function App(){
     return (
         <div>     
             <Router>             
-                <Header />
+                <Header username={username} setUsername={setUsername}/>
                 <Switch>
                     <Route path="/" exact>
                         <Search fetchCountries={fetchCountries} handleSubmit={handleSubmit}/>
@@ -59,7 +67,7 @@ function App(){
                         <Signup />
                     </Route>
                     <Route path="/:username/profile">
-                        <MyProfile setUserData={setUserData} userData={userData}/>
+                        <MyProfile username={username}/>
                     </Route>
                     <Route>
                         <h1 style={{textAlign: "center"}}>Page not found</h1>
