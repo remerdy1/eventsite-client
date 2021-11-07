@@ -10,8 +10,26 @@ function Event(props){
     const addToFavourites = async e =>{
         // event data
         const {name, date, time, image} = props;
-        //todo post to backend
-        //const res = await axios.post(`https://localhost:8050/${username}/profile/favourites`)
+        // user data
+        const {username, token} = JSON.parse(localStorage.user);
+
+        // post event data to backend
+        try{
+            const res = await axios.post(`http://localhost:8050/${username}/profile/favourites`, {name, date, time, image}, {
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        }catch(e){
+            if(e.response.status === 400){
+                alert(e.response.data);
+            } 
+
+            else if(e.response.status === 403){
+                localStorage.clear();
+                window.location = "/login";
+            }
+        }
     }
 
     return (

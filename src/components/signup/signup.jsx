@@ -19,9 +19,10 @@ function Signup(){
             
             // Send data
             const res = await axios.post("http://localhost:8050/signup", {fullName, username, password, confirmPassword});
-            
+            // save token
+            localStorage.setItem("user", JSON.stringify(res.data));
             // redirect
-            if(res.status === 200) window.location = "/login";
+            window.location = "/";
         }catch(e){
             alert(e.response.data);
         }

@@ -21,6 +21,8 @@ function MyProfile(props){
     
                 setProfileData(res.data);
             }catch(e){
+                //log user out
+                localStorage.clear();
                 // redirect to login page
                 window.location = "/login"
             }

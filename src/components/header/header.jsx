@@ -16,13 +16,16 @@ function Header(props){
         {
             // if user signed in show logout & my profile button
             (props.username && 
-            <div>
+            <div className="text-div">
                 <p className="profile-text"><a href={`/${props.username}/profile`}>My Profile</a></p>
                 <p className="profile-text" onClick={logout}>Logout</p>
             </div>)
             // else show login button
             ||
-            <p className="profile-text"><a href={'/login'}>Login</a></p>
+            <div className="text-div">
+                <p className="profile-text"><a href={'/login'}>Login</a></p>
+                <p className="profile-text"><a href={'/signup'}>Sign up</a></p>
+            </div>
         }
         </header>
     )

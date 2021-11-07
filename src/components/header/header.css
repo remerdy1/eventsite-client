@@ -30,6 +30,10 @@ a {
     cursor: pointer;
 }
 
+.text-div {
+    display: flex;
+}
+
 @media only screen and (max-width: 350px) {
     header {
         height: 200px;
