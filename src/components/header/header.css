@@ -20,6 +20,10 @@ a {
     text-decoration: none;
 }
 
+.text-div {
+    display: flex;
+}
+
 .profile-text {
     margin-right: 25px;
 }
@@ -30,14 +34,12 @@ a {
     cursor: pointer;
 }
 
-.text-div {
-    display: flex;
-}
 
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 440px) {
     header {
         height: 200px;
         flex-wrap: wrap;
+        width: 100vw;
     }
 
     .header {
@@ -46,10 +48,16 @@ a {
         text-align: center;
     }
 
-    .profile-text {
-        margin-right: 0;
+    .text-div {
+        flex-direction: column;
         width: 100vw;
         text-align: center;
+        justify-content: space-evenly;
+        height: 5rem;
+    }
+
+    .profile-text {
+        margin-right: 0;
     }
 }
 

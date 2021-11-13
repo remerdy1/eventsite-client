@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 import "./event.css";
 const axios = require("axios");
 
-// TODO: Make buy button responsive
-
 function Event(props){
     const [favourite, setFavourite] = useState(false);
     
