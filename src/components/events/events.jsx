@@ -3,6 +3,7 @@ import Event from "../event/event"
 import "./events.css"
 
 function Events(props){
+
     if(props.eventList[0] !== "No results found"){
         return (  
             <div className="events">
@@ -14,6 +15,7 @@ function Events(props){
                         time={event.dates.start.localTime ? event.dates.start.localTime.substring(0, 5) : "TBA"} 
                         key={props.eventList.indexOf(event)}
                         url={event.url}
+                        favourite={props.isFavourite(event)}
                     />)}
                 </div>
             </div>

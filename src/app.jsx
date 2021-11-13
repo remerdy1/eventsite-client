@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter as Router, Switch,Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Switch,Route} from "react-router-dom";
 import "./style.css"
 
 // Components
@@ -15,15 +15,35 @@ const axios = require("axios");
 function App(){
     const [events, setEvents] = useState([]);
     const [username, setUsername] = useState("");
+    const [favourites, setFavourites] = useState([]);
+
 
     // Check if user is already signed in
     useEffect(() =>{
         const loggedInUser = localStorage.getItem("user");
         
         if(loggedInUser){
-            setUsername(JSON.parse(loggedInUser).username);
+            const user = JSON.parse(loggedInUser);
+            setUsername(user.username);
+            
+            // Get favourites and store in state
+            (async () =>{
+                try{
+                    const res = await axios.get(`http://localhost:8050/${user.username}/profile`,{
+                        headers:{ 
+                            Authorization: `Bearer ${user.token}`
+                        }
+                    })
+    
+                    setFavourites(res.data.favourites);
+                }catch(e){
+                    localStorage.clear();
+                    window.location = "/login";
+                }
+            })();
         }
-    }, []);
+
+    }, [username]);
 
     // Make request to restcountries
     const fetchCountries = async () =>{
@@ -51,6 +71,15 @@ function App(){
         }
     }
 
+    // Check if event is in favourites 
+    const isFavourite = event =>{ 
+        for(let i = 0; i < favourites.length; i++){
+            if(event.url === favourites[i].url) return true;
+        }
+        
+        return false;
+    };
+
     return (
         <div>     
             <Router>             
@@ -58,7 +87,7 @@ function App(){
                 <Switch>
                     <Route path="/" exact>
                         <Search fetchCountries={fetchCountries} handleSubmit={handleSubmit}/>
-                        <Events eventList={events}/>
+                        <Events eventList={events} isFavourite={isFavourite} favourites={favourites}/>
                     </Route>
                     <Route path="/login">
                         <Login />
@@ -67,7 +96,7 @@ function App(){
                         <Signup />
                     </Route>
                     <Route path="/:username/profile">
-                        <MyProfile username={username}/>
+                        <MyProfile username={username} isFavourite={isFavourite} favourites={favourites}/>
                     </Route>
                     <Route>
                         <h1 style={{textAlign: "center"}}>Page not found</h1>

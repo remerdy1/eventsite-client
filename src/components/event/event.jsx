@@ -1,25 +1,34 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import "./event.css";
 const axios = require("axios");
 
-// TODO: Loading...
-// TODO: CANCELLED instead of Buy Tickets
-// TODO: Make buy button responsive 
+// TODO: Make buy button responsive
 
 function Event(props){
+    const [favourite, setFavourite] = useState(false);
+    
+    useEffect(() => {
+        if(props.favourite === true) setFavourite(true);
+    }, [props.favourite]);
+
+    // Add to favourites
     const addToFavourites = async e =>{
         // event data
-        const {name, date, time, image} = props;
+        const {name, date, time, image, url} = props;
         // user data
+        if(!localStorage.user) window.location = "/login";
+
         const {username, token} = JSON.parse(localStorage.user);
 
         // post event data to backend
         try{
-            const res = await axios.post(`http://localhost:8050/${username}/profile/favourites`, {name, date, time, image}, {
+            await axios.post(`http://localhost:8050/${username}/profile/favourites`, {name, date, time, image, url}, {
                 headers:{
                     Authorization: `Bearer ${token}`
                 }
             });
+
+            setFavourite(true);
         }catch(e){
             if(e.response.status === 400){
                 alert(e.response.data);
@@ -32,13 +41,42 @@ function Event(props){
         }
     }
 
+    // Remove from favourites
+    const removeFromFavourites = async e =>{
+        // event data
+        const {name, date, time, image, url} = props;
+        // user data
+        const {username, token} = JSON.parse(localStorage.user);
+
+        try{
+            await axios.delete(`http://localhost:8050/${username}/profile/favourites`, {
+                data:{name, date, time, image, url},
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            setFavourite(false);
+        }catch(e){
+            if(e.response.status === 400){
+                alert(e.response.data);
+            } 
+
+            else if(e.response.status === 403){
+                localStorage.clear();
+                window.location = "/login"; 
+            }
+        }
+    }
+    
+
     return (
         <div className="event-card">
             <img src={props.image} alt={props.name} className="event-image"/>
             <h3>{props.name}</h3>
             <p className="date">{props.date} {props.time}</p>
             <button className="buy-button" onClick={() => window.open(props.url)}>Buy Tickets</button>
-            <button onClick={addToFavourites}>Favourite</button>
+            <button onClick={favourite ? removeFromFavourites : addToFavourites}>{favourite ? "Remove" : "Favourite"}</button>
         </div> 
     )
 }
