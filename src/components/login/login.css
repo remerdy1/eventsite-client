@@ -31,3 +31,18 @@
     background-color: #1878c2;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 600px) {
+    .login-form {
+        display: flex;
+        margin-left: 0;
+    }
+
+    .login-input {
+        width: 90vw;
+    }
+
+    .login-button {
+        float: none;
+    }
+}
