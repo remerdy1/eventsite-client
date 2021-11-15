@@ -20,7 +20,7 @@ function Event(props){
 
         // post event data to backend
         try{
-            await axios.post(`http://localhost:8050/${username}/profile/favourites`, {name, date, time, image, url}, {
+            await axios.post(process.env.REACT_APP_API+`/${username}/profile/favourites`, {name, date, time, image, url}, {
                 headers:{
                     Authorization: `Bearer ${token}`
                 }
@@ -47,7 +47,7 @@ function Event(props){
         const {username, token} = JSON.parse(localStorage.user);
 
         try{
-            await axios.delete(`http://localhost:8050/${username}/profile/favourites`, {
+            await axios.delete(process.env.REACT_APP_API+`${username}/profile/favourites`, {
                 data:{name, date, time, image, url},
                 headers:{
                     Authorization: `Bearer ${token}`
