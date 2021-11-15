@@ -20,7 +20,7 @@ function Event(props){
 
         // post event data to backend
         try{
-            await axios.post(`https://remys-eventsite.herokuapp.com//${username}/profile/favourites`, {name, date, time, image, url}, {
+            await axios.post(`https://remys-eventsite.herokuapp.com/${username}/profile/favourites`, {name, date, time, image, url}, {
                 headers:{
                     Authorization: `Bearer ${token}`
                 }
