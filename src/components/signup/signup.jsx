@@ -18,7 +18,7 @@ function Signup(){
             e.target.confirmPassword.value = null;
             
             // Send data
-            const res = await axios.post(process.env.REACT_APP_API+"signup", {fullName, username, password, confirmPassword});
+            const res = await axios.post("https://"+process.env.REACT_APP_API+"signup", {fullName, username, password, confirmPassword});
             // save token
             localStorage.setItem("user", JSON.stringify(res.data));
             // redirect

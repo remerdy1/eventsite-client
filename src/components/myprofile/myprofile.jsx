@@ -16,7 +16,7 @@ function MyProfile(props){
                 const token = JSON.parse(localStorage.user).token;
                 
                 // get data about the profile being viewed
-                const res = await axios.get(process.env.REACT_APP_API+`${username}/profile`, {
+                const res = await axios.get("https://"+process.env.REACT_APP_API+`${username}/profile`, {
                     headers: {"authorization": "Bearer "+token}
                 });
                 
