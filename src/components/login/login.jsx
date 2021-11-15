@@ -13,7 +13,7 @@ function Login(props){
         e.target.password.value = null;
 
         try{
-            const res = await axios.post("https://"+process.env.REACT_APP_API+"login", {username, password,});
+            const res = await axios.post("https://remys-eventsite.herokuapp.com/login", {username, password,});
             // Store JWT 
             localStorage.setItem("user", JSON.stringify(res.data));
             window.location = "/";

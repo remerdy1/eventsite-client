@@ -29,7 +29,7 @@ function App(){
             // Get favourites and store in state
             (async () =>{
                 try{
-                    const res = await axios.get(`https://`+process.env.REACT_APP_API+`${user.username}/profile`,{
+                    const res = await axios.get(`https://remys-eventsite.herokuapp.com/${user.username}/profile`,{
                         headers:{ 
                             Authorization: `Bearer ${user.token}`
                         }
@@ -60,7 +60,7 @@ function App(){
         const country = e.target.country.value;
         
         try{
-            const response = await axios.post("https://"+process.env.REACT_APP_API+"events", {
+            const response = await axios.post("https://remys-eventsite.herokuapp.com/events", {
                 city,
                 country,
             })
